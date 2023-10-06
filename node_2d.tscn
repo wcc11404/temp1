@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://qhrma3wu1iiu"]
+
+[ext_resource type="Script" path="res://Node2D.gd" id="1_gaosc"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_gaosc")
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2

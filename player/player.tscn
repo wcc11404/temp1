@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://c1nttsdmiyjeh"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_kgynf"]
-[ext_resource type="Texture2D" uid="uid://b0hatgj3o4fdy" path="res://player/player1.png" id="2_6oe2r"]
+[ext_resource type="Texture2D" uid="uid://b0hatgj3o4fdy" path="res://player/assets/player1.png" id="2_qhusw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qxu5d"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_6oe2r")
+"texture": ExtResource("2_qhusw")
 }],
 "loop": true,
 "name": &"default",
@@ -18,7 +18,7 @@ animations = [{
 radius = 80.0
 height = 208.0
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 20
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_kgynf")

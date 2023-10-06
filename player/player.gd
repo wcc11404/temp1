@@ -6,18 +6,18 @@ extends CharacterBody2D
 func _ready():
 	pass # Replace with function body.
 
-var dir = Vector2.ZERO
-var speed = 700
-
+func set_entity_position(new_position):
+	set_position(new_position)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var mouse_pos = get_global_mouse_position()
-	var self_pos = position
+	#var mouse_pos = get_global_mouse_position()
+	#var self_pos = position
 	
 
-	position.x = 248*6
-	position.y = 184*6
-	to_local(self_pos)
+	#position.x = 248*6
+	#position.y = 184*6
+	#to_local(self_pos)
 	#to_global(self_pos)
 	#set_position(self_pos)
 	

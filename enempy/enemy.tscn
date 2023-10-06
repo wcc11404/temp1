@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://gfk3ikph8idm"]
+
+[ext_resource type="Script" path="res://enempy/enemy.gd" id="1_7bqof"]
+[ext_resource type="Texture2D" uid="uid://q6sacjwpa2g6" path="res://enempy/assets/enemy.png" id="1_ojopv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_37j7y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ojopv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dbvny"]
+radius = 100.0
+height = 200.0
+
+[node name="enemy" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_7bqof")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_37j7y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_dbvny")

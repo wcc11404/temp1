@@ -2,10 +2,11 @@ extends Node2D
 
 @onready var tilemap = $TileMap
 var bg1_cells = null
-var entity_map = [null]
-var player = null
-var enemy = null
-
+var entity_map = []
+@onready var player = $player
+@onready var enemy = $enemy
+var entity_arr = [player, enemy]
+var xingdong_arr = []
 
 # 获取单元格中点的全局坐标
 func get_map_position(id):
@@ -16,7 +17,7 @@ func _ready():
 	# 获取所有有效单元格的位置， 获取玩家对象
 	bg1_cells = tilemap.get_used_cells(0)
 	bg1_cells.sort()
-	player = get_tree().get_first_node_in_group("player")
+	#player = get_tree().get_first_node_in_group("player")
 	enemy = get_tree().get_first_node_in_group("enemy")
 	#print(bg1_cells)
 	
@@ -63,15 +64,27 @@ func move_unit(entity, index, direct):
 		entity_map[index] = -1
 		break
 	return
-	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	for index in range(len(bg1_cells)):
-		if entity_map[index] == 0:
-			move_unit(player, index, "RIGHT")
-		elif entity_map[index] == 1:
-			move_unit(enemy, index, "RIGHT")
-
+	for entity in entity_arr:
+		var can = entity.get_node("speed").xingdong()
+		if can == true:
+			xingdong_arr.append(entity)
+	if xingdong_arr.size() > 0:
+		xingdong()
+		xingdong_arr.clear()
+	#for index in range(len(bg1_cells)):
+	#	if entity_map[index] == 0:
+	#		move_unit(player, index, "RIGHT")
+	#		player.get
+	#	elif entity_map[index] == 1:
+	#		move_unit(enemy, index, "RIGHT")
+	
+func xingdong():
+	for entity in entity_arr:
+		move_unit(entity, index, "RIGHT")
+		
 func random_generate_tilemap():
 	
 	print(bg1_cells)

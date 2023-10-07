@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1nttsdmiyjeh"]
+[gd_scene load_steps=6 format=3 uid="uid://c1nttsdmiyjeh"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_kgynf"]
 [ext_resource type="Texture2D" uid="uid://b0hatgj3o4fdy" path="res://player/assets/player1.png" id="2_qhusw"]
+[ext_resource type="PackedScene" uid="uid://dvb0uwfqyyhp1" path="res://script/speed/speed.tscn" id="3_67enu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qxu5d"]
 animations = [{
@@ -31,3 +32,5 @@ position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_56y21")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="speed" parent="." instance=ExtResource("3_67enu")]

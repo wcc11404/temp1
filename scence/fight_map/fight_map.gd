@@ -20,14 +20,14 @@ func _ready():
 	#player = get_tree().get_first_node_in_group("player")
 	#enemy = get_tree().get_first_node_in_group("enemy")
 	
-	# 初始化 实体图层状态， -1表示什么都没有， 0 表示玩家， 1 表示怪物
+	# 初始化 实体图层状态， null表示什么都没有， 0 表示玩家， 1 表示怪物
 	for item in bg1_cells:
-		var temp = [item, -1]
+		var temp = [item, null]
 		entity_map.append(temp)
 	
 	# 初始化 玩家初始位置
 	var player_map_index = 102
-	entity_map[player_map_index][1] = 0
+	entity_map[player_map_index][1] = player
 	var player_position = get_map_position(player_map_index)
 	player.get_node("position").set_entity_position(player_map_index, player_position)
 	
@@ -54,12 +54,12 @@ func move_unit(entity, direct):
 			continue
 		
 		# 地图有人了
-		if item[1] != -1:
+		if item[1] != null:
 			return false
 			
 		entity.get_node("position").set_entity_position(i, get_map_position(i))
 		entity_map[i][1] = entity_map[index][1]
-		entity_map[index][1] = -1
+		entity_map[index][1] = null
 		return true
 	return false
 
@@ -98,7 +98,7 @@ func take_action():
 		if next_act[0] == "MOVE":
 			move_unit(entity, next_act[1])
 		elif next_act[0] == "ATTACK":
-			entity.attack(enemy_container.enemy_list[0])
+			entity.attack(next_act[1])
 		elif next_act[0] == "NONE":
 			pass
 		else:
@@ -107,13 +107,14 @@ func take_action():
 
 # 地图怪物生成
 func add_enemy(add_map_index):
-	entity_map[add_map_index][1] = 1
-	enemy_container.add_enemy(add_map_index, get_map_position(add_map_index))
+	var new_enemy = enemy_container.add_enemy(add_map_index, get_map_position(add_map_index))
+	entity_map[add_map_index][1] = new_enemy
+	
 func _on_enemy_generator_timer_timeout():
 	if enemy_container.enemy_list.size() < 10:
 		var ran = RandomNumberGenerator.new()
 		var num = ran.randi_range(0, len(entity_map) - 1)
-		if entity_map[num][1] == -1:
+		if entity_map[num][1] == null:
 			add_enemy(num)
 
 

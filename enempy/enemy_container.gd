@@ -17,10 +17,11 @@ func add_enemy(enemy_map_index, enemy_position):
 	enemy_list.append(enemy_temp)
 	
 	self.add_child(enemy_temp)
+	return enemy_temp
 
 func clean_enemy(entity_map):
 	for index in range(len(enemy_list) - 1, -1, -1):
 		if enemy_list[index].get_node("health").health_point <= 0:
-			entity_map[enemy_list[index].get_node("position").position_id][1] = -1
+			entity_map[enemy_list[index].get_node("position").position_id][1] = null
 			enemy_list[index].queue_free()
 			enemy_list.remove_at(index)

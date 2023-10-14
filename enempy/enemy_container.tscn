@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d803hvqlkoe0"]
+
+[ext_resource type="Script" path="res://enempy/enemy_container.gd" id="1_hk57a"]
+
+[node name="enmey_container" type="Node2D"]
+script = ExtResource("1_hk57a")

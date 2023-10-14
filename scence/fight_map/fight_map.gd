@@ -1,15 +1,15 @@
 extends Node2D
 
 @onready var tilemap = $TileMap
-var entity_map = []
 @onready var player = $player
-@onready var enemy = $enemy
-@onready var entity_arr = [player, enemy]
-var act_entity_array = []
+@onready var entity_arr = [player]
+@onready var enemy_container = $enemy_container
 
+# 全局地图信息
+var entity_map = []
+var act_entity_array = []
 # 获取单元格中点的全局坐标
 func get_map_position(id):
-	
 	return to_global(tilemap.map_to_local(entity_map[id][0])) * tilemap.scale
 	
 # Called when the node enters the scene tree for the first time.
@@ -32,12 +32,6 @@ func _ready():
 	var player_position = get_map_position(player_map_index)
 	player.set_entity_position(player_map_index, player_position)
 	
-	# 初始化 怪物初始位置
-	var enemy_map_index = 15
-	entity_map[enemy_map_index][1] = 1
-	var enemy_position = get_map_position(enemy_map_index)
-	enemy.set_entity_position(enemy_map_index, enemy_position)
-
 func move_unit(entity, direct):
 	var index = entity.position_id
 	var entity_position = entity_map[index][0]
@@ -72,13 +66,24 @@ func move_unit(entity, direct):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	pass
+
+func _on_actor_timer_timeout():
 	tick()
 	
 func tick():
+	# 遍历玩家策略帧
 	for entity in entity_arr:
 		var can_act = entity.get_node("speed").tick()
 		if can_act == true:
 			act_entity_array.append(entity)
+	
+	# 遍历怪物策略帧
+	for entity in enemy_container.enemy_list:
+		var can_act = entity.get_node("speed").tick()
+		if can_act == true:
+			act_entity_array.append(entity)
+			
 	if act_entity_array.size() > 0:
 		take_action()
 		act_entity_array.clear()
@@ -93,3 +98,16 @@ func take_action():
 		else:
 			pass
 		entity.get_node("speed").next_turn()
+
+func add_enemy(add_map_index):
+	entity_map[add_map_index][1] = 1
+	enemy_container.add_enemy(add_map_index, get_map_position(add_map_index))
+
+func _on_enemy_generator_timer_timeout():
+	if enemy_container.enemy_list.size() < 10:
+		var ran = RandomNumberGenerator.new()
+		var num = ran.randi_range(0, len(entity_map) - 1)
+		if entity_map[num][1] == -1:
+			add_enemy(num)
+
+

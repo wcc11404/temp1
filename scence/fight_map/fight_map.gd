@@ -24,16 +24,15 @@ func _ready():
 	for item in bg1_cells:
 		var temp = [item, -1]
 		entity_map.append(temp)
-	#print(entity_map)
 	
 	# 初始化 玩家初始位置
 	var player_map_index = 102
 	entity_map[player_map_index][1] = 0
 	var player_position = get_map_position(player_map_index)
-	player.set_entity_position(player_map_index, player_position)
+	player.get_node("position").set_entity_position(player_map_index, player_position)
 	
 func move_unit(entity, direct):
-	var index = entity.position_id
+	var index = entity.get_node("position").position_id
 	var entity_position = entity_map[index][0]
 	
 	if direct == "UP":
@@ -58,7 +57,7 @@ func move_unit(entity, direct):
 		if item[1] != -1:
 			return false
 			
-		entity.set_entity_position(i, get_map_position(i))
+		entity.get_node("position").set_entity_position(i, get_map_position(i))
 		entity_map[i][1] = entity_map[index][1]
 		entity_map[index][1] = -1
 		return true
@@ -68,9 +67,9 @@ func move_unit(entity, direct):
 func _process(delta):
 	pass
 
+# 游戏帧
 func _on_actor_timer_timeout():
 	tick()
-	
 func tick():
 	# 遍历玩家策略帧
 	for entity in entity_arr:
@@ -83,26 +82,33 @@ func tick():
 		var can_act = entity.get_node("speed").tick()
 		if can_act == true:
 			act_entity_array.append(entity)
-			
+	
+	# 行动
 	if act_entity_array.size() > 0:
 		take_action()
 		act_entity_array.clear()
-		
+	
+	# 清理死去的怪物
+	enemy_container.clean_enemy(entity_map)
+
+# 所有实体行动逻辑
 func take_action():
 	for entity in act_entity_array:
 		var next_act = entity.action(entity_map)
 		if next_act[0] == "MOVE":
 			move_unit(entity, next_act[1])
+		elif next_act[0] == "ATTACK":
+			entity.attack(enemy_container.enemy_list[0])
 		elif next_act[0] == "NONE":
 			pass
 		else:
 			pass
 		entity.get_node("speed").next_turn()
 
+# 地图怪物生成
 func add_enemy(add_map_index):
 	entity_map[add_map_index][1] = 1
 	enemy_container.add_enemy(add_map_index, get_map_position(add_map_index))
-
 func _on_enemy_generator_timer_timeout():
 	if enemy_container.enemy_list.size() < 10:
 		var ran = RandomNumberGenerator.new()

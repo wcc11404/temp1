@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://gfk3ikph8idm"]
+[gd_scene load_steps=9 format=3 uid="uid://gfk3ikph8idm"]
 
 [ext_resource type="Script" path="res://enempy/enemy.gd" id="1_7bqof"]
 [ext_resource type="Texture2D" uid="uid://q6sacjwpa2g6" path="res://enempy/assets/enemy.png" id="1_ojopv"]
 [ext_resource type="PackedScene" uid="uid://dvb0uwfqyyhp1" path="res://script/speed/speed.tscn" id="2_r34fe"]
-[ext_resource type="PackedScene" uid="uid://blcgrvuchd1gm" path="res://script/health/health_point.tscn" id="4_yl2n5"]
+[ext_resource type="PackedScene" uid="uid://blcgrvuchd1gm" path="res://script/health/health.tscn" id="4_5jy7b"]
+[ext_resource type="PackedScene" uid="uid://beqwkh8rmywbr" path="res://script/power/power.tscn" id="5_c6hv6"]
+[ext_resource type="PackedScene" uid="uid://b8lnxg4wjgy3n" path="res://script/position/position.tscn" id="6_tmsln"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_37j7y"]
 animations = [{
@@ -24,12 +26,16 @@ height = 200.0
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_7bqof")
 
-[node name="speed" parent="." instance=ExtResource("2_r34fe")]
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_37j7y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_dbvny")
 
-[node name="health_point" parent="." instance=ExtResource("4_yl2n5")]
+[node name="speed" parent="." instance=ExtResource("2_r34fe")]
+
+[node name="health" parent="." instance=ExtResource("4_5jy7b")]
+
+[node name="power" parent="." instance=ExtResource("5_c6hv6")]
+
+[node name="position" parent="." instance=ExtResource("6_tmsln")]

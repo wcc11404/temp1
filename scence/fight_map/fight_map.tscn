@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://qhrma3wu1iiu"]
+[gd_scene load_steps=5 format=3 uid="uid://qhrma3wu1iiu"]
 
 [ext_resource type="Script" path="res://scence/fight_map/fight_map.gd" id="1_i246d"]
 [ext_resource type="Texture2D" uid="uid://cagxlnsgh6u44" path="res://scence/bg.png" id="2_5hw3s"]
-[ext_resource type="PackedScene" uid="uid://c1nttsdmiyjeh" path="res://player/player.tscn" id="3_ah0bk"]
-[ext_resource type="PackedScene" uid="uid://d803hvqlkoe0" path="res://enempy/enemy_container.tscn" id="4_51t7b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b2wqv"]
 texture = ExtResource("2_5hw3s")
@@ -1296,22 +1294,3 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(786432, 1507328, 0, 786433, 1507328, 0, 786434, 1507328, 0, 786435, 1507328, 0, 786436, 1507328, 0, 786437, 1507328, 0, 786438, 1507328, 0, 786439, 1507328, 0, 786440, 1507328, 0, 786441, 1507328, 0, 786442, 1507328, 0, 786443, 1507328, 0, 786444, 1507328, 0, 786445, 1507328, 0, 786446, 1507328, 0, 786447, 1507328, 0, -65536, 1507328, 2, -65535, 1507328, 2, -65534, 1507328, 2, -65533, 1507328, 2, -65532, 1507328, 2, -65531, 1507328, 2, -65530, 1507328, 2, -65529, 1507328, 2, -65528, 1507328, 2, -65527, 1507328, 2, -65526, 1507328, 2, -65525, 1507328, 2, -65524, 1507328, 2, -65523, 1507328, 2, -65522, 1507328, 2, -65521, 1507328, 2, -1, 1638400, 0, -65520, 1703936, 0, 786448, 1703936, 1, 851967, 1638400, 1, 65535, 1572864, 1, 131071, 1572864, 1, 196607, 1572864, 1, 262143, 1572864, 1, 327679, 1572864, 1, 393215, 1572864, 1, 458751, 1572864, 1, 524287, 1572864, 1, 589823, 1572864, 1, 655359, 1572864, 1, 720895, 1572864, 1, 786431, 1572864, 1, 16, 1441792, 1, 65552, 1441792, 1, 131088, 1441792, 1, 196624, 1441792, 1, 262160, 1441792, 1, 327696, 1441792, 1, 393232, 1441792, 1, 458768, 1441792, 1, 524304, 1441792, 1, 589840, 1441792, 1, 655376, 1441792, 1, 720912, 1441792, 1)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(808, 576)
-zoom = Vector2(0.8, 0.8)
-
-[node name="player" parent="." instance=ExtResource("3_ah0bk")]
-position = Vector2(736, 584)
-
-[node name="enemy_container" parent="." instance=ExtResource("4_51t7b")]
-
-[node name="enemy_generator_timer" type="Timer" parent="."]
-autostart = true
-
-[node name="actor_timer" type="Timer" parent="."]
-wait_time = 0.05
-autostart = true
-
-[connection signal="timeout" from="enemy_generator_timer" to="." method="_on_enemy_generator_timer_timeout"]
-[connection signal="timeout" from="actor_timer" to="." method="_on_actor_timer_timeout"]

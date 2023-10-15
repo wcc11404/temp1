@@ -47,7 +47,7 @@ func find_target_nearest_position(target_position):
 		map_dict[map.get_id_position(index)] = map.get_id_entity(index)
 	
 	# 找目标点
-	var near_position_list = [Vector2i(-1, 0), Vector2i(+1, 0), Vector2i(0, -1), Vector2i(0, +1)]
+	var near_position_list = [Vector2i(0, -1), Vector2i(0, +1), Vector2i(-1, 0), Vector2i(+1, 0)]
 	var nearest_position = target_position
 	var min_distance = 99
 	for item in near_position_list:

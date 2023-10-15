@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1nttsdmiyjeh"]
+[gd_scene load_steps=10 format=3 uid="uid://c2whx4jfuyhya"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_kgynf"]
+[ext_resource type="Texture2D" uid="uid://qlyoaoxu3s3b" path="res://player/assets/entity.png" id="2_hf6kt"]
 [ext_resource type="Texture2D" uid="uid://b0hatgj3o4fdy" path="res://player/assets/player1.png" id="2_qhusw"]
 [ext_resource type="PackedScene" uid="uid://dvb0uwfqyyhp1" path="res://script/speed/speed.tscn" id="3_67enu"]
 [ext_resource type="PackedScene" uid="uid://beqwkh8rmywbr" path="res://script/power/power.tscn" id="4_mlnwd"]
@@ -15,6 +16,9 @@ height = 208.0
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_hf6kt")
+}, {
+"duration": 1.0,
 "texture": ExtResource("2_qhusw")
 }],
 "loop": true,
@@ -24,7 +28,7 @@ animations = [{
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 20
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.35, 0.35)
 script = ExtResource("1_kgynf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -41,5 +45,7 @@ sprite_frames = SubResource("SpriteFrames_qxu5d")
 [node name="power" parent="." instance=ExtResource("4_mlnwd")]
 
 [node name="health" parent="." instance=ExtResource("5_rj6j2")]
+position = Vector2(-102, -108)
+scale = Vector2(0.8, 0.8)
 
 [node name="position" parent="." instance=ExtResource("6_sn4d8")]

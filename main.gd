@@ -90,5 +90,5 @@ func take_action():
 		entity.get_node("speed").next_turn()
 
 func _on_enemy_generator_timer_timeout():
-	if enemy_container.enemy_list.size() < 10:
+	if enemy_container.enemy_list.size() < 5:
 		enemy_container.add_enemy()

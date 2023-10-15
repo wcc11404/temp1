@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://gfk3ikph8idm"]
+[gd_scene load_steps=10 format=3 uid="uid://gfk3ikph8idm"]
 
 [ext_resource type="Script" path="res://enempy/enemy.gd" id="1_7bqof"]
 [ext_resource type="Texture2D" uid="uid://q6sacjwpa2g6" path="res://enempy/assets/enemy.png" id="1_ojopv"]
+[ext_resource type="Texture2D" uid="uid://b22d73xhyra4g" path="res://enempy/assets/entity.png" id="2_pl775"]
 [ext_resource type="PackedScene" uid="uid://dvb0uwfqyyhp1" path="res://script/speed/speed.tscn" id="2_r34fe"]
 [ext_resource type="PackedScene" uid="uid://blcgrvuchd1gm" path="res://script/health/health.tscn" id="4_5jy7b"]
 [ext_resource type="PackedScene" uid="uid://beqwkh8rmywbr" path="res://script/power/power.tscn" id="5_c6hv6"]
@@ -10,6 +11,9 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_37j7y"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pl775")
+}, {
 "duration": 1.0,
 "texture": ExtResource("1_ojopv")
 }],
@@ -23,7 +27,7 @@ radius = 100.0
 height = 200.0
 
 [node name="enemy" type="CharacterBody2D"]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.35, 0.35)
 script = ExtResource("1_7bqof")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -35,7 +39,19 @@ shape = SubResource("CapsuleShape2D_dbvny")
 [node name="speed" parent="." instance=ExtResource("2_r34fe")]
 
 [node name="health" parent="." instance=ExtResource("4_5jy7b")]
+position = Vector2(-102, -108)
+scale = Vector2(0.8, 0.8)
 
 [node name="power" parent="." instance=ExtResource("5_c6hv6")]
 
 [node name="position" parent="." instance=ExtResource("6_tmsln")]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -68.5714
+offset_top = -102.857
+offset_right = 114.429
+offset_bottom = 126.143
+theme_override_colors/default_color = Color(0.592157, 0.4, 0.207843, 1)
+theme_override_font_sizes/normal_font_size = 150
+text = "M"
+scroll_active = false

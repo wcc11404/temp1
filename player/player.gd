@@ -31,5 +31,16 @@ func action():
 # 攻击相关
 func attack(entity):
 	entity.attacked(self)
+	if not entity.get_node("health").is_alive():
+		$experience.increase_exp(entity.get_node("experience").killed_exp)
 func attacked(entity):
 	var result = $health.decrease_hp(entity.get_node("power").power_point)
+func move(direction):
+	$position.move(direction)
+
+func _on_experience_lvl_up_signal(lvl):
+	$experience.set_max_exp(lvl * 10)
+	$health.set_max_hp(lvl * 3)
+	$power.set_power_point(lvl)
+	$speed.set_speed(20 + lvl)
+	print(lvl)

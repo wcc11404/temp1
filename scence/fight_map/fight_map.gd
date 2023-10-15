@@ -19,9 +19,6 @@ func _ready():
 		var temp = [item, null]
 		entity_map.append(temp)
 
-func move_entity(source_position_id, target_position_id):
-	set_entity(target_position_id, get_id_entity(source_position_id))
-	clean_entity(source_position_id)
 func set_entity(position_id, entity):
 	entity_map[position_id][1] = entity
 func clean_entity(position_id):

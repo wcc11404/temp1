@@ -2,7 +2,7 @@ extends Node2D
 
 class_name speed
 
-var speed = 20
+var speed_point = 20
 var tick_measure = 0
 var max_tick_measure = 1000
 
@@ -10,8 +10,10 @@ var max_tick_measure = 1000
 func _ready():
 	init()
 
+func set_speed(num):
+	speed_point = num
 func tick():
-	tick_measure += speed
+	tick_measure += speed_point
 	if tick_measure >= max_tick_measure:
 		return true
 	return false

@@ -6,7 +6,7 @@ var entity_type = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$speed.speed = 50
+	$speed.set_speed(50)
 
 func action():
 	if not $health.is_alive():
@@ -32,7 +32,10 @@ func action():
 		
 	return ["NONE"]
 	
+# 攻击相关
 func attack(entity):
 	entity.attacked(self)
 func attacked(entity):
 	var result = $health.decrease_hp(entity.get_node("power").power_point)
+func move(direction):
+	$position.move(direction)

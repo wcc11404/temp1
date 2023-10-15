@@ -16,6 +16,7 @@ wait_time = 0.03
 autostart = true
 
 [node name="enemy_generator_timer" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
 
 [node name="player" parent="." instance=ExtResource("2_21n7v")]

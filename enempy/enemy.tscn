@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://gfk3ikph8idm"]
+[gd_scene load_steps=11 format=3 uid="uid://gfk3ikph8idm"]
 
 [ext_resource type="Script" path="res://enempy/enemy.gd" id="1_7bqof"]
 [ext_resource type="Texture2D" uid="uid://q6sacjwpa2g6" path="res://enempy/assets/enemy.png" id="1_ojopv"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://blcgrvuchd1gm" path="res://script/health/health.tscn" id="4_5jy7b"]
 [ext_resource type="PackedScene" uid="uid://beqwkh8rmywbr" path="res://script/power/power.tscn" id="5_c6hv6"]
 [ext_resource type="PackedScene" uid="uid://b8lnxg4wjgy3n" path="res://script/position/position.tscn" id="6_tmsln"]
+[ext_resource type="PackedScene" uid="uid://crkircd8d0bsv" path="res://script/experience/experience.tscn" id="8_oc25d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_37j7y"]
 animations = [{
@@ -55,3 +56,5 @@ theme_override_colors/default_color = Color(0.592157, 0.4, 0.207843, 1)
 theme_override_font_sizes/normal_font_size = 150
 text = "M"
 scroll_active = false
+
+[node name="experience" parent="." instance=ExtResource("8_oc25d")]

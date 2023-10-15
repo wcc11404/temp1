@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2whx4jfuyhya"]
+[gd_scene load_steps=11 format=3 uid="uid://c2whx4jfuyhya"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_kgynf"]
 [ext_resource type="Texture2D" uid="uid://qlyoaoxu3s3b" path="res://player/assets/entity.png" id="2_hf6kt"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://beqwkh8rmywbr" path="res://script/power/power.tscn" id="4_mlnwd"]
 [ext_resource type="PackedScene" uid="uid://blcgrvuchd1gm" path="res://script/health/health.tscn" id="5_rj6j2"]
 [ext_resource type="PackedScene" uid="uid://b8lnxg4wjgy3n" path="res://script/position/position.tscn" id="6_sn4d8"]
+[ext_resource type="PackedScene" uid="uid://crkircd8d0bsv" path="res://script/experience/experience.tscn" id="8_qqub5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_56y21"]
 radius = 80.0
@@ -26,7 +27,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="player" type="CharacterBody2D" groups=["player"]]
+[node name="player" type="CharacterBody2D"]
 z_index = 20
 scale = Vector2(0.35, 0.35)
 script = ExtResource("1_kgynf")
@@ -40,6 +41,9 @@ shape = SubResource("CapsuleShape2D_56y21")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qxu5d")
 
+[node name="position" parent="." instance=ExtResource("6_sn4d8")]
+scale = Vector2(1, 1)
+
 [node name="speed" parent="." instance=ExtResource("3_67enu")]
 
 [node name="power" parent="." instance=ExtResource("4_mlnwd")]
@@ -48,4 +52,6 @@ sprite_frames = SubResource("SpriteFrames_qxu5d")
 position = Vector2(-102, -108)
 scale = Vector2(0.8, 0.8)
 
-[node name="position" parent="." instance=ExtResource("6_sn4d8")]
+[node name="experience" parent="." instance=ExtResource("8_qqub5")]
+
+[connection signal="lvl_up_signal" from="experience" to="." method="_on_experience_lvl_up_signal"]

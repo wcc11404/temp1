@@ -88,3 +88,34 @@ func find_next_direction(target_position):
 			return "DOWN"
 	
 	return "NONE"
+
+func move(direct):
+	var map = get_tree().get_first_node_in_group("map")
+	var entity_position = map.get_id_position(position_id)
+	
+	if direct == "UP":
+		entity_position[1] -= 1
+	elif direct == "DOWN":
+		entity_position[1] += 1
+	elif direct == "LEFT":
+		entity_position[0] -= 1
+	elif direct == "RIGHT":
+		entity_position[0] += 1
+	else:
+		return false
+	
+	for i in range(len(map.entity_map)):
+		var item_position = map.get_id_position(i)
+		if entity_position[0] != item_position[0]:
+			continue
+		if entity_position[1] != item_position[1]:
+			continue
+		
+		# 地图有人了
+		if not map.is_position_empty(i):
+			return false
+		
+		map.clean_entity(position_id)
+		set_entity_position(i)
+		return true
+	return false

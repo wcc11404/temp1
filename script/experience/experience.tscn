@@ -4,3 +4,13 @@
 
 [node name="experience" type="Node2D"]
 script = ExtResource("1_bp5fw")
+
+[node name="lvl_label" type="Label" parent="."]
+offset_left = -50.0
+offset_top = -35.0
+offset_right = 50.0
+offset_bottom = 35.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+vertical_alignment = 1

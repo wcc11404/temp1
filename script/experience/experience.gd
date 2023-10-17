@@ -10,6 +10,7 @@ var killed_exp = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#$lvl_text.set_use_bbcode(true)
 	set_lvl(1)
 
 func set_max_exp(num):
@@ -18,6 +19,10 @@ func set_exp(num):
 	experience_point = num
 func set_lvl(num):
 	lvl = num
+	#$lvl_text.clear()
+	#$lvl_text.add_text("[center]Lv " + str(lvl) + "[/center]")
+	$lvl_label.text = "Lv " + str(lvl)
+	
 func increase_exp(num):
 	if num <= 0:
 		return false

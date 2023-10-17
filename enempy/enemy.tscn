@@ -58,3 +58,4 @@ text = "M"
 scroll_active = false
 
 [node name="experience" parent="." instance=ExtResource("8_oc25d")]
+position = Vector2(0, 90)

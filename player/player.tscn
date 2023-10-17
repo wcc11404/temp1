@@ -42,7 +42,6 @@ shape = SubResource("CapsuleShape2D_56y21")
 sprite_frames = SubResource("SpriteFrames_qxu5d")
 
 [node name="position" parent="." instance=ExtResource("6_sn4d8")]
-scale = Vector2(1, 1)
 
 [node name="speed" parent="." instance=ExtResource("3_67enu")]
 
@@ -53,5 +52,6 @@ position = Vector2(-102, -108)
 scale = Vector2(0.8, 0.8)
 
 [node name="experience" parent="." instance=ExtResource("8_qqub5")]
+position = Vector2(0, 90)
 
 [connection signal="lvl_up_signal" from="experience" to="." method="_on_experience_lvl_up_signal"]
